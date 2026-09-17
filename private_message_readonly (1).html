@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Private Message ♥</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #fff5fa;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(255,150,190,.20), transparent 28%),
+        radial-gradient(circle at 85% 80%, rgba(255,80,140,.18), transparent 30%),
+        linear-gradient(135deg, #210918, #4b102d 50%, #160611);
+    }
+
+    .card {
+      width: min(700px, 100%);
+      padding: 38px;
+      border-radius: 28px;
+      text-align: center;
+      background: rgba(30, 6, 21, .78);
+      border: 1px solid rgba(255,210,225,.25);
+      box-shadow: 0 25px 80px rgba(0,0,0,.5);
+      backdrop-filter: blur(12px);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      color: #ffd5e5;
+      font-size: clamp(32px, 6vw, 48px);
+    }
+
+    .subtitle {
+      margin: 0 0 28px;
+      color: #eeb1c8;
+    }
+
+    .lock-box {
+      max-width: 420px;
+      margin: auto;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255,205,225,.3);
+      border-radius: 14px;
+      outline: none;
+      background: rgba(255,255,255,.08);
+      color: white;
+      font: inherit;
+    }
+
+    button {
+      padding: 13px 26px;
+      border: 0;
+      border-radius: 14px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: bold;
+      color: #351022;
+      background: #ffc1d8;
+    }
+
+    button:hover { background: #ffd5e5; }
+
+    #message {
+      display: none;
+      margin-top: 28px;
+      padding: 25px;
+      border-radius: 20px;
+      text-align: left;
+      white-space: pre-wrap;
+      line-height: 1.8;
+      font-size: 18px;
+      color: #ffe9f1;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,210,225,.2);
+      user-select: text;
+    }
+
+    #status {
+      min-height: 22px;
+      margin-top: 12px;
+      color: #ffbcd3;
+      font-size: 14px;
+    }
+
+    .heart { color: #ffb4cd; }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <h1><span class="heart">♥</span> A Private Message</h1>
+    <p class="subtitle">There is something here for you.</p>
+
+    <div class="lock-box">
+      <input id="password" type="password" placeholder="Enter the password">
+      <button onclick="unlock()">Open Message</button>
+      <div id="status"></div>
+    </div>
+
+    <div id="message">
+      <!-- =====================================================
+           WRITE YOUR MESSAGE BELOW.
+
+           Replace the example text with your own message.
+           The reader will NOT get an editable text box.
+           ===================================================== -->
+
+      Your message goes here.
+
+      Write as many lines as you want.
+      ♥
+    </div>
+  </main>
+
+  <script>
+    const PASSWORD = "Muskan";
+
+    function unlock() {
+      const entered = document.getElementById("password").value;
+      const message = document.getElementById("message");
+      const status = document.getElementById("status");
+
+      if (entered === PASSWORD) {
+        message.style.display = "block";
+        status.textContent = "Message unlocked ♥";
+      } else {
+        message.style.display = "none";
+        status.textContent = "Incorrect password.";
+      }
+    }
+
+    document.getElementById("password").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") unlock();
+    });
+  </script>
+</body>
+</html>
